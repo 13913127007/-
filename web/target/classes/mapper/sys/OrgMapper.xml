@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.sys.mapper.OrgMapper">
+
+    <select id="selectTopList" resultType="com.yuantu.dev.sys.entity.Org">
+        SELECT id,pid,code,name,address,remark,`code` AS description FROM sys_org WHERE rid=#{topOrgId} AND deleted=0
+        ORDER BY id
+    </select>
+
+    <select id="listAll" resultType="com.yuantu.dev.sys.entity.Org">
+        SELECT id,pid,name,id AS `value` FROM sys_org WHERE deleted=0 ORDER BY id
+    </select>
+
+    <select id="getUserByOrgIdAndRoleId" resultType="com.yuantu.dev.sys.dto.UserInfoDTO">
+        SELECT DISTINCT
+        `a`.`id` AS `id`,
+        `a`.`username` AS `username`,
+        `a`.`real_name` AS `real_name`,
+        `a`.`nick_name` AS `nick_name`,
+        `a`.`avatar` AS `avatar`,
+        `a`.`sex` AS `sex`,
+        `a`.`phone` AS `phone`,
+        `a`.`email` AS `email`
+        FROM
+        `sys_user` a
+        RIGHT JOIN sys_user_org b ON a.id=b.user_id
+        RIGHT JOIN sys_user_role c ON a.id=c.user_id
+        WHERE c.role_id=#{roleId}
+        AND b.org_id=#{orgId}
+        AND a.deleted=0
+    </select>
+</mapper>

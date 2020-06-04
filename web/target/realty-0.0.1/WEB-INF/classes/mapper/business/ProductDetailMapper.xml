@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.ProductDetailMapper">
+
+    <select id="queryProductDetail" resultType="com.yuantu.dev.business.dto.ProductDetailDTO">
+        SELECT pd.id, pd.prod_type_id,pt.`name` type_name,pd.`name`,prt.id priceType_id,commonly_price,weekend_price,holiday_price,price,pd.prod_unit_id,pu.`name` unit_name,pd.inventory,sales_num,default_img,product_img,description,details_img,is_cycle,cycle_type_id,opening_time,closing_time,is_alteration,is_after_sales,is_square,deadline,pd.deleted,pd.create_time,pd.modified_time,pd.`status`
+        FROM product_detail pd
+        LEFT JOIN product_type pt ON pd.prod_type_id=pt.id
+        LEFT JOIN product_unit pu ON pd.prod_unit_id=pu.id
+        LEFT JOIN price_type prt ON pd.id=prt.product_detail_id
+        WHERE pd.deleted = 0
+        ORDER BY pd.id
+    </select>
+</mapper>

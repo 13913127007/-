@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.CompanyInfoMapper">
+
+    <select id="pageCompany" resultType="com.yuantu.dev.business.entity.CompanyInfo">
+        SELECT c.id,c.name,c.address, c.area from kh_company c
+        <where>
+            <if test="company.name != null and company.name != ''">
+                <bind name="name" value="'%' + company.name + '%'"/>
+                c.name LIKE #{name}
+            </if>
+        </where>
+    </select>
+
+    <insert id="saveCompany" useGeneratedKeys="true" keyProperty="id">
+  insert into kh_company(id,name,address,area)
+  values(
+   #{id},#{name},#{address},#{area}
+
+)
+</insert>
+
+</mapper>

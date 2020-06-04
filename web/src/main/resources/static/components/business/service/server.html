@@ -1,0 +1,127 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">服务管理</h2>
+        <span class="layui-breadcrumb pull-right">
+            <a><cite>业务</cite></a>
+            <a><cite>服务管理</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <form id="searchForm" onsubmit="return false;">
+                产品名称：<input name="buildName" class="layui-input search-input" type="text" placeholder="输入产品名"/>
+                类别名称：<input name="name" class="layui-input search-input" type="text" placeholder="输入类别名"/>
+                状态：<select name="status" lay-verify="">
+                <option value="">请选择一个状态</option>
+                <option value="0">正常</option>
+                <option value="-1">禁用</option>
+            </select>
+                <button id="room-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+            </form>
+        </div>
+        <script type="text/html" id="room-toolbar">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>添加</button>
+            </div>
+        </script>
+        <!-- 数据表格 -->
+        <table class="layui-table" id="room-table" lay-filter="room-table"></table>
+    </div>
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="room-table-bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">详情</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<!-- 表格状态列 -->
+<script type="text/html" id="room-tpl-status">
+    <input type="checkbox" lay-filter="room-tpl-status" value="{{d.id}}" lay-skin="switch"
+           lay-text="正常|禁用" {{d.status==0?'checked':''}}/>
+</script>
+
+<script>
+    layui.use(['form', 'table', 'config','layer', 'crab','formSelects'], function () {
+        var form = layui.form;
+        var table = layui.table;
+        var config = layui.config;
+        var layer = layui.layer;
+        var crab = layui.crab;
+
+        var formSelects = layui.formSelects;
+        var method = 'POST';
+        var edit = false;
+
+        //渲染表格
+        var roomTable = table.render({
+            elem: '#room-table',
+            toolbar: '#room-toolbar',
+            url:'/productDetail/page',
+            page: true,
+            parseData: config.parseData,
+            cols: [[
+                {type: 'numbers'},
+                {field: 'name', title: '产品名', align: 'center',width: 200},
+                {field: 'typeName', title: '类别名', align: 'center',width: 200},
+                {field: 'price', title: '价格(元)', align: 'center',width: 200},
+                {field: 'unitName', title: '单位', align: 'center',width: 200},
+                {field: 'status', templet: '#room-tpl-status', title: '状态', align: 'center',width: 200},
+                {fixed: 'right', align: 'center', toolbar: '#room-table-bar', title: '操作', width: 200}
+            ]]
+        });
+
+        // 表格顶部操作列
+        table.on('toolbar(room-table)', function (obj) {
+            if (obj.event === 'add') {
+                showEditModel();
+            }
+        });
+
+        // 工具条点击事件
+        table.on('tool(room-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            if (layEvent === 'edit') {
+                showEditModel(data);
+            } else if (layEvent === 'del') {
+                //删除
+                layer.confirm('确定要删除该服务信息吗？', function () {
+                    crab.deleteRow(obj, '/room/' + obj.data.id);
+                });
+            }
+        });
+
+        // 搜索按钮点击事件
+        $('#room-btn-search').click(function () {
+            roomTable.reload({where: crab.getSearchForm()});
+        });
+
+        // 显示编辑弹窗
+        var showEditModel = function (data) {
+            crab.putFormData(data);
+            crab.popupCenter({
+                title: data ? '修改服务名' : '添加服务名',
+                path: '/components/business/service/server-form.html',
+                area:['720px','600px'],
+                scrollbar:true,
+                offset: 'auto',
+                finish: function () {
+                    roomTable.reload('room-table', {});
+                }
+            });
+        };
+
+        // 修改building状态
+        form.on('switch(room-tpl-status)', function (obj) {
+            crab.put('/room/update_' + obj.elem.value, {
+                status: obj.elem.checked ? 0 : -1
+            }, function () {
+                layer.msg('门牌信息状态修改成功', {icon: 1});
+            });
+        });
+    });
+
+
+</script>

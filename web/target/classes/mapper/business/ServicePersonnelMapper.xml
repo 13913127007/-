@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.ServicePersonnelMapper">
+    <select id="queryUser" resultType="com.yuantu.dev.business.entity.ServicePersonnel">
+
+            SELECT DISTINCT
+            `c`.id AS `id`,
+            `c`.service_name AS `serviceName`,
+            `c`.address AS `address`,
+            `c`.sex AS `sex`,
+            `c`.age AS `age`,
+            `c`.phone AS `phone`,
+            `c`.status AS `status`,
+            `c`.create_time AS `create_time`
+            FROM
+            `service_person` `c`
+            WHERE `c`.`id` IS NOT NULL AND `c`.`deleted` = 0
+            <if test="servicePersonnel.serviceName != null and servicePersonnel.serviceName != ''">
+                <bind name="servicePersonnel.serviceName" value="'%' + servicePersonnel.serviceName + '%'" />
+                AND `c`.`service_name` LIKE #{servicePersonnel.serviceName}
+            </if>
+            ORDER BY `c`.`id`
+
+    </select>
+
+
+   <!-- <select id="selectSelectedVO" resultType="com.yuantu.dev.business.vo.PropertyPersonnelSelectedVO">
+    SELECT r.id,r.property_personnel_name,( CASE WHEN r.id IS NOT NULL THEN 'true' END ) AS selected
+    FROM property_personnel r
+    where  r.id=#{id}
+    </select>-->
+</mapper>

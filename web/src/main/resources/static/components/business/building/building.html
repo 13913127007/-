@@ -1,0 +1,134 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">楼栋管理</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a><cite>业务</cite></a>
+          <a><cite>楼栋管理</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <form id="searchForm" onsubmit="return false;">
+                名称：<input name="name" class="layui-input search-input" type="text" placeholder="输入名称"/>&emsp;
+                状态：<select name="status" lay-verify="">
+                <option value="">请选择一个状态</option>
+                <option value="0">正常</option>
+                <option value="-1">禁用</option>
+            </select>
+                <button id="building-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索
+                </button>
+            </form>
+        </div>
+
+        <script type="text/html" id="building-toolbar">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>添加</button>
+                <!--<button class="layui-btn layui-btn-primary layui-btn-sm" lay-event="operate"><i class="layui-icon">&#xe63c;</i>操作日志</button>-->
+            </div>
+        </script>
+
+        <!-- 数据表格 -->
+        <table class="layui-table" id="building-table" lay-filter="building-table"></table>
+    </div>
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="building-table-bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<!-- 表格状态列 -->
+<script type="text/html" id="building-tpl-status">
+    <input type="checkbox" lay-filter="building-tpl-status" value="{{d.id}}" lay-skin="switch"
+           lay-text="正常|禁用" {{d.status==0?'checked':''}}/>
+</script>
+
+<script>
+    layui.use(['form', 'table', 'config', 'crab'], function () {
+        var form = layui.form;
+        var table = layui.table;
+        var config = layui.config;
+        var layer = layui.layer;
+        var crab = layui.crab;
+        var method = 'POST';
+
+        //渲染表格
+        var buildingTable = table.render({
+            elem: '#building-table',
+            toolbar: '#building-toolbar',
+            // url: config.base_server + '/building/selectAll',
+            url:'/building/page',
+            page: true,
+            parseData: config.parseData,
+            cols: [[
+                {type: 'numbers'},
+                {field: 'name', title: '楼栋名', align: 'center',width: 260},
+                {field: 'status', templet: '#building-tpl-status', title: '状态', align: 'center',width: 260},
+                {field: 'createTime', title: '创建时间', align: 'center',sort: true, width: 330},
+                {field: 'modifiedTime', title: '修改时间', align: 'center',sort: true, width: 330},
+                {fixed: 'right', align: 'center', toolbar: '#building-table-bar', title: '操作', width: 395}
+            ]]
+        });
+
+        // 表单提交事件
+        form.on('submit(building-form-submit)', function (data) {
+            crab.request('/building', data.field, function () {
+                buildingTable.reload('building-table');
+                layer.closeAll('page');
+            }, method);
+            return false;
+        });
+
+        // 表格顶部操作列
+        table.on('toolbar(building-table)', function (obj) {
+            if (obj.event === 'add') {
+                showEditModel();
+            }
+        });
+
+        // 工具条点击事件
+        table.on('tool(building-table)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'edit') {
+                showEditModel(data);
+            } else if (obj.event === 'del') {
+                var idType = obj.data.id;
+                console.log(idType);
+                //删除
+                layer.confirm('确定要删除该条楼栋信息吗？', function () {
+                    crab.deleteRow(obj, '/building/' + obj.data.id);
+                });
+            }
+        });
+
+        // 搜索按钮点击事件
+        $('#building-btn-search').click(function () {
+            buildingTable.reload({where: crab.getSearchForm()});
+        });
+
+        // 显示编辑弹窗
+        var showEditModel = function (data) {
+            crab.putFormData(data);
+            crab.popupCenter({
+                title: data ? '修改' : '添加',
+                path: '/components/business/building/building-form.html',
+                area: '450px',
+                finish:function () {
+                    buildingTable.reload('companyInfo-table',{})
+                }
+            });
+        };
+
+        // 修改building状态
+        form.on('switch(building-tpl-status)', function (obj) {
+            crab.put('/building/update_' + obj.elem.value, {
+                status: obj.elem.checked ? 0 : -1
+            }, function () {
+                layer.msg('楼栋信息状态修改成功', {icon: 1});
+            });
+        });
+    });
+
+
+</script>

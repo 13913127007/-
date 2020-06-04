@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.CompanyInfoMapper">
+
+    <select id="pageCompany" resultType="com.yuantu.dev.business.entity.CompanyInfo">
+        SELECT ci.id,ci.`name`,ci.address,area,ci.deleted,ci.`status`,x.showUserId, showUserName
+        FROM company_info ci
+        LEFT JOIN (
+            SELECT company_id,GROUP_CONCAT(cu.user_id SEPARATOR',') AS `showUserId`,GROUP_CONCAT(u.real_name SEPARATOR',') AS `showUserName`
+			FROM relation_company_user cu
+			LEFT JOIN sys_user u ON cu.user_id=u.id
+			GROUP BY company_id
+		) `x` ON x.company_id=ci.id
+        WHERE ci.deleted=0
+        <if test="company.name != null and company.name != ''">
+            <bind name="name" value="'%' + company.name + '%'"/>
+            AND ci.name LIKE #{name}
+        </if>
+    </select>
+
+</mapper>

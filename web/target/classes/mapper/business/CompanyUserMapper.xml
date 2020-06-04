@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.CompanyUserMapper">
+
+    <select id="queryUser" resultType="com.yuantu.dev.business.dto.CompanyUserDTO">
+        SELECT
+        su.id,username,`password`,real_name,initial,nick_name,avatar,sex,phone,phone_verified,email,email_verified,su.`status`,su.deleted,su.create_time,su.modified_time,
+        ci.`name` company_name,ci.id company_id
+        FROM sys_user su
+        LEFT JOIN relation_company_user rcu ON su.id=rcu.user_id
+        LEFT JOIN company_info ci ON rcu.company_id = ci.id
+        LEFT JOIN sys_user_role sur ON sur.user_id=su.id
+        WHERE su.deleted=0 AND sur.role_id=3
+        <if test="user.companyName != null and user.companyName != ''">
+            <bind name="companyName" value="'%' + user.companyName + '%'"/>
+            AND ci.`name` LIKE #{companyName}
+        </if>
+        <if test="user.realName != null and user.realName != ''">
+            <bind name="realName" value="'%' + user.realName + '%'"/>
+            AND su.real_name LIKE #{realName}
+        </if>
+        <if test="user.phone != null and user.phone != ''">
+            <bind name="phone" value="'%' + user.phone + '%'"/>
+            AND su.phone LIKE #{phone}
+        </if>
+    </select>
+</mapper>

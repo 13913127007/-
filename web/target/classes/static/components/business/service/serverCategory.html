@@ -1,0 +1,108 @@
+
+
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <h2 class="header-title">服务管理</h2>
+            <span class="layui-breadcrumb pull-right">
+            <a><cite>业务</cite></a>
+            <a><cite>服务类型</cite></a>
+        </span>
+        </div>
+        <div class="layui-card-body">
+    <!--  <table class="layui-table" id="cg" lay-filter="room-table"></table>-->
+            <table  class="layui-table" id="tableDemo" lay-filter="room-table"></table>
+        </div>
+    </div>
+
+
+<script type="text/html" id="room-toolbar">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>添加</button>
+    </div>
+</script>
+
+<!-- 表格状态列 -->
+<script type="text/html" id="room-tpl-status">
+      <input type="checkbox" lay-filter="room-tpl-status" value="{{d.id}}" lay-skin="switch"
+               lay-text="上架|下架" {{d.isShelves==0?'checked':''}}/>
+</script>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="room-table-bar">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['form', 'table', 'config','layer', 'crab'], function () {
+        var form = layui.form;
+        var table = layui.table;
+        var config = layui.config;
+        var layer = layui.layer;
+        var crab = layui.crab;
+
+
+        //渲染表格
+        var cusUrl=config.base_server + '/productType/all'
+        //执行一个 table 实例
+       var roomTable= table.render({
+            elem: '#tableDemo',
+            toolbar: '#room-toolbar',
+            url:cusUrl,
+            page: true,
+            parseData: config.parseData
+            , cols: [[ //表头
+                {type: 'numbers'},
+                {field: 'name', title: '名称',width: 240},
+                {field: 'icon', title: '小图标',width: 240},
+                {field: 'isShelves', templet: '#room-tpl-status',title: '是否上架', width: 240},
+                {fixed: 'right', title: '操作', width: 240, align: 'center', toolbar: '#room-table-bar'}
+            ]],
+
+        });
+
+        // 表格顶部操作列
+        table.on('toolbar(room-table)', function (obj) {
+            if (obj.event === 'add') {
+                showEditModel();
+            }
+        });
+        $('.layui-btn.layuiadmin-btn-tags').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+    // 工具条点击事件
+    table.on('tool(room-table)', function (obj) {
+        var data = obj.data;
+        var layEvent = obj.event;
+        if (layEvent === 'edit') {
+            showEditModel(data);
+        } else if (layEvent === 'del') {
+            //删除
+            layer.confirm('确定要删除该条门牌信息吗？', function () {
+                crab.deleteRow(obj, '/productType/del/' + obj.data.id);
+            });
+        }
+    });
+
+   /* // 搜索按钮点击事件
+    $('#room-btn-search').click(function () {
+        roomTable.reload({where: crab.getSearchForm()});
+    });*/
+
+    // 显示编辑弹窗
+    var showEditModel = function (data) {
+        crab.putFormData(data);
+        crab.popupCenter({
+            title: data ? '修改服务名' : '添加服务名',
+            path: '/components/business/service/serverCategory-form.html',
+            area:'450px',
+            scrollbar:true,
+            offset: 'auto',
+            finish: function () {
+                roomTable.reload('room-table', {});
+            }
+        });
+     };
+    });
+</script>

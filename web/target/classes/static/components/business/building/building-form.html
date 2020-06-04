@@ -1,0 +1,63 @@
+<form id="building-form" lay-filter="building-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">楼栋名</label>
+        <div class="layui-input-block">
+            <input name="name" placeholder="请输入楼栋名" type="text" class="layui-input" maxlength="20"
+                   lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <table class="layui-hide" id="addAddress" lay-filter="addAddress"></table>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary close" ew-event="closeDialog" type="button">取消</button>
+        <button class="layui-btn" lay-filter="companyInfo-form-submit" lay-submit>保存</button>
+    </div>
+</form>
+<script type="text/html" id="building-bar">
+    <button type="button" class="layui-btn layui-btn-sm" lay-filter="addRoomName" id="addRoomName">
+        <i class="layui-icon">&#xe608;</i>
+    </button>
+</script>
+<script type="text/html" id="roomNameText">
+    <form id="roomNameText-form" lay-filter="roomNameText-form" class="layui-form model-form">
+        <input name="id" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">房间名</label>
+            <div class="layui-input-block">
+                <input name="roomNameText" placeholder="请输入房间名" type="text" class="layui-input" maxlength="20"
+                       lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item model-form-footer">
+            <button class="layui-btn layui-btn-primary close" type="button">取消</button>
+            <button class="layui-btn" lay-filter="roomNameText-form-submit" lay-submit>确认</button>
+        </div>
+    </form>
+</script>
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+        var $ = layui.jquery, layer = layui.layer;
+
+        // 渲染表格数据
+        table.render({
+            elem: '#addAddress'
+            // ,url:'/room/selectTree'
+            ,url:'/room/selectAll'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'id', width:50, title: 'ID'}
+                ,{field:'floorName', width:60, title: '楼层'}
+                ,{field:'name', width:200, title: '门牌号'}
+                ,{fixed: 'right', align: 'center', toolbar: '#building-bar', title: '操作', width: 90}
+            ]]
+        });
+
+        layer.open({
+
+        });
+
+        });
+</script>

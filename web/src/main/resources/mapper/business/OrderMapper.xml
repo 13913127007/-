@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.OrderMapper">
+
+    <select id="pageOrder" resultType="com.yuantu.dev.business.dto.OrderDTO">
+        SELECT cus.cusname cusname,c.address address,o.totl_amount totlAmount,o.reatily_amount reatilyAmount,o.is_pyment isPyment,o.order_status orderStatus,o.is_disp isDisp,o.is_rating isRating,o.`status` status,o.remark remark
+
+        FROM `order` o ,company_customer cus ,company_info c
+
+        where o.customer_id=cus.id and o.company_address_id=c.id
+    </select>
+
+</mapper>

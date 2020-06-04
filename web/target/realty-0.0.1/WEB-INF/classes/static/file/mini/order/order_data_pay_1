@@ -1,0 +1,1 @@
+﻿{"code":0,"data":[{"id":1,"name":"小时清洁","type":1,"price":50,"properties":[{"name":"时间","value":"周六至周日"}],"isCycle":1,"cycleTypeId":1,"isSquare":0,"num":3,"unit":"次","defaultImg":{"id":1,"type":"image","url":"https://www.govsales.cn/file/img/mini/index_first_swiper_1.jpg"},"cycleDate":{"start":"2019-08-10","startTime":"08:30","end":"2019-08-10","endTime":"11:30"}}],"msg":"执行成功"}

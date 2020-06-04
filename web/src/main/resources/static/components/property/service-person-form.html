@@ -1,0 +1,134 @@
+<!-- user表单弹窗 -->
+<form id="user-form" lay-filter="user-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <input name="status" type="hidden"/>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input id="serviceName" name="serviceName" placeholder="请输入姓名" type="text" class="layui-input" minlength="6"
+                   maxlength="20"
+                   lay-verify="required|uniqueVerify" required/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">年龄</label>
+        <div class="layui-input-block">
+            <input name="age" placeholder="请输入年龄" type="text" class="layui-input" minlength="6" maxlength="20"
+                   lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="男" title="男" checked/>
+            <input type="radio" name="sex" value="女" title="女"/>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input name="phone" placeholder="请输入联系方式" type="text" class="layui-input" lay-verify="enphone"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">住址</label>
+        <div class="layui-input-block">
+            <input name="address" placeholder="请输入住址" type="text" class="layui-input"/>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary close" ew-event="closeDialog" type="button">取消</button>
+        <button class="layui-btn" lay-filter="user-form-submit" lay-submit>保存</button>
+    </div>
+
+</form>
+
+<script>
+    layui.use(['layer', 'crab', 'form', 'formSelects'], function () {
+        var layer = layui.layer;
+        var crab = layui.crab;
+        var form = layui.form;
+        var formSelects = layui.formSelects;
+        var edit = false;
+        var method = 'POST';
+        form.render('radio');
+
+
+        // 编辑的用户信息
+        var user = crab.getFormData();
+        if (user) {
+            $('#serviceName').attr('disabled',true);
+            edit = true;
+            // 编辑角色查询选中接口
+            form.val('user-form', user);
+        }
+
+
+
+
+        // 表单提交事件
+        form.verify({
+            enphone: function(value, item){ //value：表单的值、item：表单的DOM对象
+                if(value!== '' && !new  RegExp("^$|^1\\d{10}$").test(value)){
+                    return '请输入正确的手机号';
+                }
+            },
+
+            uniqueVerify:function(value, item){
+             /*   var url = '/sys/user',flag = true;
+                if(edit){
+                    url += '/verify/'+user.id+'/'+value;
+                }else{
+                    url += '/verify/-1/'+value;
+                }
+                crab.request(url, {}, function (data) {
+                    flag = parseInt(data) <= 0;
+                },'GET','',false);
+                if(!flag) return "该账号已存在";*/
+            }
+        }).on('submit(user-form-submit)', function (data) {
+          /*  var flag = 0;
+            crab.request('/sys/user/dj_jd/check', {
+                orgId:data.field.orgIds,
+                userId:data.field.id?data.field.id:-1,
+                roleIds:data.field.roleIds,
+                edit:edit
+            }, function (data) {
+                flag = parseInt(data);
+            },'GET','',false);
+            if(flag === 1) {
+                layer.msg('所选组织下，登记员角色账号已存在！');
+                return false;
+            }
+            if(flag === 2) {
+                layer.msg('所选组织下，接待员角色账号已存在！');
+                return false;
+            }*/
+            var url = '/serperson/saveSerperson';
+            if (edit) {
+                url = '/serperson/edit';
+                method = 'PUT';
+            }
+
+            var sta=data.field.status
+            if(sta==""||sta==null){
+                data.field.status="0"
+            }
+            crab.request(url, data.field, function () {
+
+                layer.msg(edit ? '修改成功' : '添加成功', {icon: 1});
+                crab.finishPopupCenter();
+            }, method);
+            return false;
+        });
+    });
+
+
+</script>

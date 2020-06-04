@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.ProductDetailMapper">
+
+    <select id="queryProductDetail" resultType="com.yuantu.dev.business.dto.OpsProductDTO">
+        SELECT pd.id, pd.type_id,pd.`name`,price,pd.inventory,sales_num,default_img,product_img,description,details_img,pd.deleted,pd.create_time,pd.modified_time,pd.`status`
+        FROM ops_product pd
+        WHERE pd.deleted = 0
+        ORDER BY pd.id
+    </select>
+</mapper>

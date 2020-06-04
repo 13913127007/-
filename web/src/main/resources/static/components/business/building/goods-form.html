@@ -1,0 +1,26 @@
+<form id="goods-form" lay-filter="goods-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">楼栋名</label>
+        <div class="layui-input-block">
+            <input name="name" placeholder="请输入楼栋名" type="text" class="layui-input" maxlength="20"
+                   lay-verify="required" required/>
+        </div>
+        <button type="button" class="layui-btn" id="test1">
+            <i class="layui-icon">&#xe67c;</i>上传图片
+        </button>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary close" ew-event="closeDialog" type="button">取消</button>
+        <button class="layui-btn" lay-filter="companyInfo-form-submit" lay-submit>保存</button>
+    </div>
+</form>
+<script>
+    layui.use(['table','upload'], function(){
+        var table = layui.table;
+        var upload = layui.upload;
+
+    });
+
+
+</script>

@@ -1,0 +1,300 @@
+<div class="layui-card">
+    <div id="pageHead" class="layui-card-header">
+        <h2 class="header-title">新增服务信息</h2>
+    </div>
+</div>
+
+<form id="server-form" lay-filter="server-form" class="layui-form model-form">
+    <fieldset class="layui-elem-field">
+        <legend>基础信息</legend>
+        <div class="layui-field-box">
+            <input name="id" type="hidden"/>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">类型</label>
+                        <div class="layui-input-block">
+                            <select name="typeIds" xm-select="typeId" xm-select-radio="" lay-verify="required" >
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">服务名</label>
+                        <div class="layui-input-block">
+                            <input name="name" placeholder="请输入服务名称" type="text" class="layui-input" maxlength="20"
+                                   lay-verify="required" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">单位</label>
+                        <div class="layui-input-block">
+                            <select name="unitIds" xm-select="unitId" xm-select-radio lay-verify="required">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <label class="layui-form-label">库存</label>
+                        <div class="layui-input-block">
+                            <input name="inventory" placeholder="请输入库存数量" type="text" class="layui-input" maxlength="20"
+                                   lay-verify="required" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs12">
+                            <label class="layui-form-label">统一价格</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="priceType" lay-filter="priceType" lay-skin="switch" lay-text="是|否" checked="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-row">
+                        <div class="layui-col-xs6">
+                            <div id="unifyPrice">
+                                <label class="layui-form-label">价格</label>
+                                <div class="layui-input-block">
+                                    <input name="price" type="text" class="layui-input" maxlength="20"
+                                           lay-verify="required" required/>
+                                </div>
+                            </div>
+                            <div class="layui-row" id="differentPrice" hidden>
+                                <div class="layui-col-xs2 layui-col-sm8 layui-col-md4">
+                                    <label class="layui-form-label">默认价格</label>
+                                    <div class="layui-input-block">
+                                        <input name="price" type="text" class="layui-input" maxlength="20"
+                                               lay-verify="required" required/>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs2 layui-col-sm8 layui-col-md4">
+                                    <label class="layui-form-label">周末价格</label>
+                                    <div class="layui-input-block">
+                                        <input name="price" type="text" class="layui-input" maxlength="20"
+                                               lay-verify="required" required/>
+                                    </div>
+                                </div>
+                                <div class="layui-col-xs2 layui-col-sm8 layui-col-md4">
+                                    <label class="layui-form-label">节假日价格</label>
+                                    <div class="layui-input-block">
+                                        <input name="price" type="text" class="layui-input" maxlength="20"
+                                               lay-verify="required" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>图文描述</legend>
+        <div class="layui-field-box">
+            <div class="layui-form-item">
+                <div class="layui-upload">
+                    <label class="layui-form-label">产品图片</label>
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn" id="productImg">上传图片</button>
+                        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                            预览图：
+                            <div class="layui-upload-list" id="productImgs"></div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-upload">
+                    <label class="layui-form-label">详情图片</label>
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn" id="detailsImg">上传图片</button>
+                        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                            预览图：
+                            <div class="layui-upload-list" id="detailsImgs"></div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述信息</label>
+                <div class="layui-input-block">
+                    <textarea name="description" id="description" placeholder="请输入描述信息" class="layui-textarea"></textarea>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>其他设置</legend>
+        <div class="layui-field-box">
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs4">
+                        <label class="layui-form-label">开始时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="openingTime" placeholder="HH:mm:ss">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs4">
+                        <label class="layui-form-label">结束时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="closingTime" placeholder="HH:mm:ss">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs4">
+                        <label class="layui-form-label">支持退换</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="isAlteration" value="1" lay-skin="switch" lay-text="ON|OFF">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs4">
+                        <label class="layui-form-label">支持售后</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="afterSale" value="1" lay-skin="switch" lay-text="ON|OFF">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs4">
+                        <label class="layui-form-label">周期制</label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" name="isCycle" lay-filter="isCycle" lay-skin="switch" lay-text="是|否" checked>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs3" id="cycleSelect">
+                        <label class="layui-form-label">周期类型</label>
+                        <div class="layui-input-block">
+                            <select name="cycleType" xm-select="cycleTypeId" xm-select-radio>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="layui-elem-field">
+        <legend>销售规格</legend>
+        <div class="layui-field-box">
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-xs3">
+                        <label class="layui-form-label">属性名</label>
+                        <div class="layui-input-block">
+                            <input name="name" placeholder="请输入属性名称" type="text" class="layui-input" maxlength="20"
+                                   lay-verify="required" required/>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary close" ew-event="closeDialog" type="button">取消</button>
+        <button class="layui-btn" lay-filter="product-form-submit" lay-submit>保存</button>
+    </div>
+</form>
+<script>
+layui.use(['laydate','layer', 'crab', 'form', 'formSelects','upload'],function () {
+    var laydate = layui.laydate;
+    var layer = layui.layer;
+    var crab = layui.crab;
+    var form = layui.form;
+    var formSelects = layui.formSelects;
+    var upload = layui.upload;
+    var edit = false;
+    var method = 'POST';
+
+
+    form.render();
+    initLayData();
+    initSelectBox();
+
+    // 初始化时间
+    function initLayData(){
+        laydate.render({
+            elem:'#openingTime',
+            type:'time',
+            value:'08:00:00'
+        });
+            laydate.render({
+                elem:'#closingTime',
+                type:'time',
+                value:'17:00:00'
+            });
+    }
+    
+    // 初始化下拉框
+    function initSelectBox() {
+        loadSingleSelectBox(crab,formSelects,'/productType/all','typeId');
+        loadSingleSelectBox(crab,formSelects,'/productUnit/list','unitId');
+        loadSingleSelectBox(crab,formSelects,'/cycleType/listAll','cycleTypeId');
+    }
+
+    // 加载单选下拉选择框
+    function loadSingleSelectBox(crab,formSelects,url,xSelect){
+        crab.request(url, {}, function (data) {
+            var selectData = crab.getFormData();
+            if (selectData){
+                edit = true;
+            }
+            var SelectData = new Array();
+            for (var i = 0; i < data.length; i++) {
+                SelectData.push({
+                    name: data[i].name,
+                    value: data[i].id
+                });
+            }
+            formSelects.data(xSelect, 'local', {arr: SelectData});
+        });
+    }
+
+    //多图片上传
+    upload.render({
+        elem: '#productImg'
+        ,url: '/upload/'
+        // ,auto:false
+        // ,bindAction:'product-form-submit'
+        ,multiple: true
+        ,before: function(obj){
+            //预读本地文件示例，不支持ie8
+            obj.preview(function(index, file, result){
+                $('#productImgs').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+            });
+        }
+        ,done: function(res){
+            //上传完毕
+        }
+    });
+
+    var $unifyPrice = $('#unifyPrice'),
+        $differentPrice = $('#differentPrice'),
+        $cycleSelect = $('#cycleSelect');
+    // 价格类型输入框显示/隐藏
+    form.on('switch(priceType)',function (data) {
+        if (data.elem.checked){
+            $unifyPrice.show();
+            $differentPrice.hide();
+        }else{
+            $unifyPrice.hide();
+            $differentPrice.show();
+        }
+    });
+
+    // 是否周期选择框显示/隐藏
+    form.on('switch(isCycle)',function (data) {
+        data.elem.checked ? $cycleSelect.show() : $cycleSelect.hide();
+    })
+})
+</script>

@@ -1,0 +1,320 @@
+<div class="layui-btn-container"
+     style="margin-top: 0;position: fixed ;z-index: 10;background-color: #FFF;top: 51px;width: 100%;border-bottom:1px solid #ddd">
+    <button class="layui-btn layui-btn-sm" id="addBuildingBtn" style="margin: 10px" lay-event="addBuild"><i
+            class="layui-icon">&#xe654;</i>添加楼栋
+    </button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm layui-btn-disabled" id="editRoomBtn"
+            style="margin: 10px" lay-event="editRoom"><i class="layui-icon">&#xe642;</i>编辑房间
+    </button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm layui-btn-disabled" id="addCompanyBtn" style="margin: 10px">
+        <i
+                class="layui-icon" lay-event="addCompany">&#xe656;</i>添加企业
+    </button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm" style="margin: 10px"><i class="layui-icon">&#xe655;</i>导入
+    </button>
+</div>
+
+<div class="layui-card" style="margin-top: 36px;">
+    <div class="layui-card-header">
+        <h2 class="header-title">房源管理</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a><cite>业务</cite></a>
+          <a><cite>房源管理</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-collapse" id="room-content" lay-filter="room-colla" style="margin-top: 50px">
+        </div>
+    </div>
+</div>
+
+<style>
+    .floor {
+        margin-top: -1px;
+        padding: 10px 0;
+        overflow: hidden;
+        border-top: 1px dashed #e0e0e0;
+    }
+
+    .floor .title {
+        float: left;
+        padding: 10px 0 0 12px;
+        width: 100px;
+        line-height: 20px;
+    }
+
+    .house-list .floor .title .num {
+        line-height: 20px;
+        font-size: 16px;
+        color: #666;
+        padding: 4px 0;
+    }
+
+    .floor .title i {
+        margin-right: 7px;
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url('../../../image/楼栋.png') no-repeat;
+    }
+
+    .floor .details {
+        display: block;
+        margin-left: 115px;
+    }
+
+    .floor .details li {
+        float: left;
+        margin: 10px;
+        position: relative;
+    }
+
+    .floor .details .room {
+        position: relative;
+        display: block;
+        width: 108px;
+        height: 46px;
+        line-height: 46px;
+        text-align: center;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+    }
+
+    .floor .details .for-rent {
+        font-size: larger;
+        color: #3F3F3F;
+        border-color: #F2F2F2;
+        /*background: #F2F2F2 url(/../../../image/空置.png) no-repeat 100% 100%;*/
+        background: #F2F2F2 100% 100%;
+    }
+
+    .floor .details .add-room {
+        width: 108px;
+        height: 46px !important;
+        line-height: 46px !important;
+        margin: 10px;
+    }
+
+    #addFloorBtn {
+        color: #777777;
+        width: 100%;
+        text-align: center;
+        height: 46px;
+        line-height: 46px;
+        font-size: larger;
+    }
+
+    .chooseRoom {
+        border-color: #00FF00;
+    }
+
+</style>
+
+<!-- 编辑房间 -->
+<script type="text/html" id="RoomModel">
+    <form id="room-form" lay-filter="room-form" class="layui-form model-form">
+        <input name="id" type="hidden"/>
+        <div class="layui-form-item">
+            <label class="layui-form-label">房间名</label>
+            <div class="layui-input-block">
+                <input name="roomName" placeholder="请输入房间名称" type="text" class="layui-input" maxlength="20"
+                       lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">面积</label>
+            <div class="layui-input-block">
+                <input name="buildingName" placeholder="请输入房间面积" type="number" class="layui-input" maxlength="20"
+                       lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item model-form-footer">
+            <button class="layui-btn layui-btn-primary close" type="button">取消</button>
+            <button class="layui-btn" lay-filter="role-form-submit" type="button">保存</button>
+        </div>
+    </form>
+</script>
+
+<script>
+
+    layui.use(['form', 'element', 'layer', 'crab'], function () {
+        var form = layui.form;
+        var element = layui.element;
+        var layer = layui.layer;
+        var $ = layui.jquery;
+        var crab = layui.crab;
+
+        roomContent();
+
+        // 新增楼栋
+        $('#addBuildingBtn').on('click', function (data) {
+            // console.log(data);
+            crab.popupCenter({
+                title: '添加楼栋',
+                path: '/components/business/building/addBuilding.html',
+                finish: function () {
+                    roomContent();
+                }
+            });
+        });
+
+        // 编辑房间
+        $('#editRoomBtn').on('click', function (obj) {
+            var floorId = crab.getTempData("floorId");
+            var data= obj.data;
+            showRoomEditModel(data);
+        });
+
+        // 添加公司
+        $('#addCompanyBtn').on('click', function (data) {
+            var that = this;
+            crab.putTempData('buildingId', data.currentTarget.dataset.id);
+            crab.popupCenter({
+                title: '添加公司',
+                path: '/components/business/building/addCompany.html',
+                finish: function () {
+                    roomContent();
+                }
+            });
+        });
+
+        // 新增房间
+        $('.layui-collapse').on('click', '.add-room', function (obj) {
+            console.log(obj);
+            var data= obj.data;
+            // showRoomEditModel(data);
+
+            var that = this;
+            crab.putTempData('floorId', obj.currentTarget.dataset.id);
+            crab.popupCenter({
+                title: '添加房间',
+                path: '/components/business/building/addRoom.html',
+                finish: function () {
+                    roomContent();
+                }
+            });
+        });
+
+        // 新增楼层
+        $('.layui-collapse').on('click', '.add-floor', function (data) {
+            // console.log(data);
+            var that = this;
+            crab.putTempData('buildingId', data.currentTarget.dataset.id);
+            crab.popupCenter({
+                title: '添加楼层',
+                path: '/components/business/building/addFloor.html',
+                finish: function () {
+                    roomContent();
+                }
+            });
+        });
+
+        var differentindex = 999;
+        // $('.room').hover(function () {
+        $('.layui-collapse').on('hover','.room',function () {
+            // openMsg(this);
+            layer.tips('清智物业', this, {
+                tips: [1, '#3595CC'],
+                time: 3000
+            });
+        }, function () {
+            layer.close(differentindex);
+        });
+        // // Tips弹窗
+        // function openMsg(t) {
+        //      var row=$(t).attr('data-d'); //获取显示内容
+        //     differentindex = layer.tips('清智物业', t, {
+        //         tips: [1, '#3595CC'],
+        //         time: 3000
+        //     });
+        // }
+
+        //显示表单弹窗
+        var showRoomEditModel = function (data) {
+            crab.putFormData(data);
+            crab.popupCenter({
+                title: data ? '修改房间' : '添加房间',
+                path: '/components/business/building/addRoom.html',
+                area:'700px',
+                finish: function () {
+                    roomContent();
+                }
+            });
+        };
+
+        $('.layui-collapse').on('click', '.room', function () {
+            $(this).css('border-color','#0bed26');
+            $('#editRoomBtn').removeClass("layui-btn-disabled");
+            $('#addCompanyBtn').removeClass("layui-btn-disabled");
+        });
+
+        // 加载页面内容
+        function roomContent() {
+            crab.get('/room/selectTree', {}, function (data) {
+                var buildLength = data.length;
+                var str = "";
+                for (var i = 0; i < buildLength; i++) {
+                    var buildInfo = data[i];
+                    var floor = buildInfo.floorList;
+                    var floorLength = floor.length;
+                    str += "<div class=\"layui-colla-item\">" +
+                        "                <h2 class=\"layui-colla-title\">" + buildInfo.buildName + "</h2>";
+                    if (floorLength === 0) {
+                        str +="<div class=\"layui-colla-content  floor build_"+buildInfo.buildId+" \">"
+                    }else {
+                        for (var j = 0; j < floorLength; j++) {
+                            var floorInfo = floor[j];
+                            var room = floorInfo.roomList;
+                            var roomLength = room.length;
+                            str += "<div class=\"layui-colla-content  floor build_"+buildInfo.buildId+" \">" +
+                                "                    <div class=\"title\" style=\"float:left\">" +
+                                "                        <div class=\"num\">" +
+                                "                            <i></i>" +
+                                "                            " + floorInfo.floorName + "" +
+                                "                        </div>" +
+                                "                    </div>" +
+                                "                    <ul class=\"details clearfix\">";
+                            for (var k = 0; k < roomLength; k++) {
+                                var roomInfo = room[k];
+                                str += "<li>" +
+                                    "                            <div class=\"room for-rent\" data-id="+roomInfo.id+">" +
+                                    "                                <span id='roomName'>" + roomInfo.name + "</span>" +
+                                    "                            </div>" +
+                                    "                        </li>";
+                            }
+                            if (j === floorLength-1) {
+                                str += "<button class=\"layui-btn layui-btn-normal add-room\" data-id=" + floorInfo.floorId + "><i" +
+                                    "                                class=\"layui-icon\" lay-event=\"addRoom\">&#xe608;</i>" +
+                                    "                            添加房间" +
+                                    "                        </button>" +
+                                    "                    </ul>";
+                            }else {
+                                str += "<button class=\"layui-btn layui-btn-normal add-room\" data-id=" + floorInfo.floorId + "><i" +
+                                    "                                class=\"layui-icon\">&#xe608;</i>" +
+                                    "                            添加房间" +
+                                    "                        </button>" +
+                                    "                    </ul>" +
+                                    "               </div>";
+                            }
+                        }
+                    }
+                    str += "<button class=\"layui-btn layui-btn-primary layui-btn-fluid add-floor\" id=\"addFloorBtn\" data-id=" + buildInfo.buildId + ">\n" +
+                        "                        新增楼层\n" +
+                        "                    </button>\n" +
+                        "                </div>\n" +
+                        "            </div>";
+                }
+                $("#room-content").html(str);
+                var list=new Array();
+                var tempBuildingId=crab.getTempData("buildingId");
+                $(".build_"+tempBuildingId).addClass("layui-show");
+                element.render();
+            })
+
+        }
+    });
+
+
+</script>

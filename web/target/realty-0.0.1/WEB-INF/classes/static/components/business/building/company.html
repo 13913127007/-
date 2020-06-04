@@ -1,0 +1,114 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">企业管理</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a><cite>业务</cite></a>
+          <a><cite>企业管理</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <form id="searchForm" onsubmit="return false;">
+                公司名称：<input name="name" class="layui-input search-input" type="text" placeholder="输入公司名"/>
+                <button id="company-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+            </form>
+        </div>
+
+        <script type="text/html" id="company-toolbar">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>添加</button>
+            </div>
+        </script>
+
+        <!-- 数据表格 -->
+        <table class="layui-table" id="company-table" lay-filter="company-table"></table>
+    </div>
+</div>
+
+<!-- 表格操作列 -->
+<script type="text/html" id="company-table-bar">
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑/详情</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<!-- 表格状态列 -->
+<script type="text/html" id="company-tpl-status">
+    <input type="checkbox" lay-filter="company-tpl-status" value="{{d.id}}" lay-skin="switch"
+           lay-text="正常|禁用" {{d.status==0?'checked':''}}/>
+</script>
+
+<script>
+    layui.use(['form', 'table', 'config', 'crab'], function () {
+        var form = layui.form;
+        var table = layui.table;
+        var config = layui.config;
+        var layer = layui.layer;
+        var crab = layui.crab;
+
+        var companyTable = table.render({
+            elem: '#company-table',
+            toolbar: '#company-toolbar',
+            url: config.base_server + 'company/page',
+            parseData: config.parseData,
+            page: true,
+            cols: [[
+                {type: 'numbers'},
+                {field: 'name', title: '公司名称', width: 275},
+                {field: 'address', title: '公司地址', width: 400},
+                {field: 'area', title: '占用面积', width: 200},
+                {field: 'showUserName', title: '联系人', width: 200},
+                {field: 'status', templet: '#company-tpl-status', title: '状态', width: 200},
+                {fixed: 'right', align: 'center', toolbar: '#company-table-bar', title: '操作', width: 300}
+            ]]
+        });
+
+        // 搜索按钮点击事件
+        $('#company-btn-search').click(function () {
+            companyTable.reload({where: crab.getSearchForm()});
+        });
+
+        // 表格顶部操作列
+        table.on('toolbar(company-table)', function (obj) {
+            if (obj.event === 'add') {
+                showEditModel();
+            }
+        });
+
+        // 表格操作列事件
+        table.on('tool(company-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            if (layEvent === 'edit') {
+                // 编辑(查看详情)
+                showEditModel(data)
+            } else if (layEvent === 'del') {
+                // 删除
+                layer.confirm('确定要删除该企业及人员信息吗？', function () {
+                    crab.deleteRow(obj, '/company/delete_' + obj.data.id);
+                })
+            }
+        });
+
+        // 修改公司状态
+        form.on('switch(company-tpl-status', function (obj) {
+            crab.put('/company/status_' + obj.elem.value, {
+                status: obj.elem.checked ? 0 : -1
+            }, function () {
+                layer.msg('企业状态修改成功', {icon: 1});
+            })
+        });
+
+        //显示表单弹窗
+        var showEditModel = function (data) {
+            crab.putFormData(data);
+            crab.popupCenter({
+                title: data ? '修改企业' : '添加企业',
+                path: '/components/business/building/company-form.html',
+                area:'700px',
+                finish: function () {
+                    companyTable.reload('company-table', {});
+                }
+            });
+        };
+    })
+</script>

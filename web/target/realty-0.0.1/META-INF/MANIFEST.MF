@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: realty
+Implementation-Version: 0.0.1
+Built-By: 49030
+Implementation-Vendor-Id: com.yuantu
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.8.0_151
+Main-Class: ${start-class}
+

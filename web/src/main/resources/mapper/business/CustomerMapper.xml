@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuantu.dev.business.mapper.CustomerMapper">
+
+    <select id="queryUser" resultType="com.yuantu.dev.business.entity.CompanyCustomer">
+        select name , phone
+        from kh_person
+
+        <where>
+
+            <if test="phone !=null and phone.size()>0">
+                phone in
+                <foreach item="phone" index="index" collection="phone" open="(" separator="," close=")">
+                    #{phone}
+                </foreach>
+            </if>
+
+            <if test="phone.size()==0">
+                phone=1
+            </if>
+
+        </where>
+
+
+    </select>
+
+</mapper>

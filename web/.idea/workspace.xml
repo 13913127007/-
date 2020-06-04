@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="realty:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cfffe7e8-41b7-4948-bf9d-c3b9847183a2" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="241" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="realty" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="FxmlFile" />
+        <option value="Tag Library Descriptor" />
+        <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>obj</find>
+      <find>console.log</find>
+      <find>config</find>
+      <find>build</find>
+      <find>showRoomEditModel</find>
+      <find>user-btn-search</find>
+      <find>form.render('radio');</find>
+      <find>add</find>
+      <find>company-toolbar</find>
+      <find>toolbar</find>
+      <find>tool</find>
+      <find>companyname</find>
+      <find>companyInfo-form-submit</find>
+      <find>@media screen and (max-width:450px)</find>
+      <find>barDemo</find>
+      <find>method</find>
+      <find>userTable</find>
+      <find>user-table</find>
+      <find>initLeftNav</find>
+      <find>xm-select</find>
+      <find>CompanyCustomer</find>
+      <find>Long</find>
+      <find>userTableReload</find>
+      <find>aau</find>
+      <find>enphone</find>
+      <find>uniqueVerify</find>
+      <find>room-tpl-status</find>
+      <find>component-form-group</find>
+      <find>popupCenterParam</find>
+      <find>ops_product_detail</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+      <replace>门牌</replace>
+      <replace>CompanyInfo</replace>
+      <replace>companyInfo</replace>
+      <replace>add-room</replace>
+      <replace>add-floor</replace>
+      <replace>buildList</replace>
+      <replace>floorIdList</replace>
+      <replace>goods</replace>
+      <replace>serpersonTable</replace>
+      <replace>String</replace>
+    </replaceStrings>
+    <dirStrings>
+      <dir>F:\SVN\清智物业\web\src\main\java\com\yuantu\dev\sys\controller</dir>
+    </dirStrings>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:/KFtools/apache-maven-3.5.0-bin/apache-maven-3.5.0" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1a503WGFXYFM7CZd8oB49mhagDV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="D:/AndriodSDk/SDK" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="E:/BaiduNetdiskDownload/资料-SpringSecurity/SpringSecurity_day02/代码/spring_security_management" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\SVN\清智物业\web\src\main\resources\static\components\business\building\product" />
+      <recent name="F:\SVN\清智物业\web\src\main\resources\static\components\business\building\building" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yuantu.dev.business.dto" />
+      <recent name="com.yuantu.dev.business.service" />
+      <recent name="com.yuantu.dev.core.web" />
+      <recent name="com.yuantu.dev.core.bean" />
+      <recent name="com.yuantu.dev.common.utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\物业\web\src\main\resources\static\components\business\product" />
+      <recent name="D:\工具\物业\web\src\main\resources\mapper\business" />
+      <recent name="D:\工具\物业\web\src\main\resources\static\components\Order" />
+      <recent name="D:\工具\物业\web\src\main\resources\static\components\property" />
+      <recent name="D:\工具\物业\web\src\main\resources\static\components\business\building" />
+    </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="http://localhost:8080/company/saveCompany" />
+          <option name="urlPath" value="" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.RealtyApplication">
+    <configuration name="RealtyApplication#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/RealtyApplication.http">
+      <method v="2" />
+    </configuration>
+    <configuration name="RealtyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="realty" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yuantu.dev.RealtyApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 8.5.38" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.38" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="realty:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_realty_2" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="13254" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.RealtyApplication" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.38" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cfffe7e8-41b7-4948-bf9d-c3b9847183a2" name="Default Changelist" comment="" />
+      <created>1564365640032</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1564365640032</updated>
+      <workItem from="1564365641494" duration="19952000" />
+      <workItem from="1564446604005" duration="27781000" />
+      <workItem from="1564496441335" duration="4634000" />
+      <workItem from="1564533435092" duration="23958000" />
+      <workItem from="1564619277503" duration="22102000" />
+      <workItem from="1564663004829" duration="2368000" />
+      <workItem from="1564706343533" duration="14721000" />
+      <workItem from="1564840584167" duration="6676000" />
+      <workItem from="1564964781288" duration="28554000" />
+      <workItem from="1565051561733" duration="8827000" />
+      <workItem from="1565071071050" duration="8499000" />
+      <workItem from="1565138529192" duration="24974000" />
+      <workItem from="1565172380745" duration="1248000" />
+      <workItem from="1565224438918" duration="21922000" />
+      <workItem from="1565311221341" duration="19984000" />
+      <workItem from="1565570171082" duration="11677000" />
+      <workItem from="1565617567660" duration="1204000" />
+      <workItem from="1565656420848" duration="16625000" />
+      <workItem from="1565742418043" duration="19711000" />
+      <workItem from="1565789501712" duration="1510000" />
+      <workItem from="1565829650436" duration="16201000" />
+      <workItem from="1565916212203" duration="21414000" />
+      <workItem from="1566126982552" duration="2281000" />
+      <workItem from="1566173818602" duration="20565000" />
+      <workItem from="1566261178526" duration="24571000" />
+      <workItem from="1566347821233" duration="13394000" />
+      <workItem from="1566434376705" duration="11167000" />
+      <workItem from="1566520309414" duration="13643000" />
+      <workItem from="1566780165682" duration="18439000" />
+      <workItem from="1566865489494" duration="14042000" />
+      <workItem from="1566913095005" duration="592000" />
+      <workItem from="1566953306952" duration="5951000" />
+      <workItem from="1567038420627" duration="10313000" />
+      <workItem from="1567125545980" duration="7762000" />
+      <workItem from="1567384482305" duration="8509000" />
+      <workItem from="1567424602007" duration="329000" />
+      <workItem from="1567470590219" duration="12891000" />
+      <workItem from="1567558078526" duration="8979000" />
+      <workItem from="1567645242058" duration="14363000" />
+      <workItem from="1567730137817" duration="17303000" />
+      <workItem from="1567988075328" duration="14412000" />
+      <workItem from="1568075793055" duration="22585000" />
+      <workItem from="1568124148713" duration="597000" />
+      <workItem from="1568161660170" duration="11760000" />
+      <workItem from="1568248368678" duration="12566000" />
+      <workItem from="1568558647722" duration="2978000" />
+      <workItem from="1568595520814" duration="10925000" />
+      <workItem from="1568644586430" duration="1192000" />
+      <workItem from="1568680185660" duration="7236000" />
+      <workItem from="1568767271417" duration="13450000" />
+      <workItem from="1568853336460" duration="18716000" />
+      <workItem from="1568939985184" duration="11075000" />
+      <workItem from="1569162102602" duration="1399000" />
+      <workItem from="1569198570873" duration="12947000" />
+      <workItem from="1569285173729" duration="7669000" />
+      <workItem from="1569371482723" duration="19580000" />
+      <workItem from="1569458286911" duration="23226000" />
+      <workItem from="1569544561509" duration="14462000" />
+      <workItem from="1569717041724" duration="11113000" />
+      <workItem from="1569803553737" duration="4821000" />
+      <workItem from="1570350900524" duration="1737000" />
+      <workItem from="1570494131923" duration="15300000" />
+      <workItem from="1570580879837" duration="25976000" />
+      <workItem from="1570667146823" duration="27226000" />
+      <workItem from="1570753984755" duration="22172000" />
+      <workItem from="1570979428643" duration="595000" />
+      <workItem from="1571012213812" duration="28193000" />
+      <workItem from="1571099429013" duration="20202000" />
+      <workItem from="1571185797027" duration="26042000" />
+      <workItem from="1571272023151" duration="25464000" />
+      <workItem from="1571358673166" duration="18139000" />
+      <workItem from="1571618162077" duration="24355000" />
+      <workItem from="1571703882662" duration="6440000" />
+      <workItem from="1571790413843" duration="15501000" />
+      <workItem from="1571877413840" duration="6454000" />
+      <workItem from="1571963709932" duration="7411000" />
+      <workItem from="1572222617679" duration="5469000" />
+      <workItem from="1572308491265" duration="14683000" />
+      <workItem from="1572395636318" duration="4979000" />
+      <workItem from="1572405813387" duration="6108000" />
+      <workItem from="1572481982657" duration="4091000" />
+      <workItem from="1572568458699" duration="9725000" />
+      <workItem from="1572827380553" duration="15524000" />
+      <workItem from="1572913752198" duration="7362000" />
+      <workItem from="1572935436648" duration="28482000" />
+      <workItem from="1573087862729" duration="42939000" />
+      <workItem from="1573434290988" duration="17743000" />
+      <workItem from="1573527311843" duration="11054000" />
+      <workItem from="1573543887131" duration="433000" />
+      <workItem from="1573544607381" duration="5854000" />
+      <workItem from="1573605995971" duration="20013000" />
+      <workItem from="1573692490356" duration="8332000" />
+      <workItem from="1573703563581" duration="10792000" />
+      <workItem from="1573718308392" duration="5677000" />
+      <workItem from="1573779291819" duration="3067000" />
+      <workItem from="1573784260044" duration="2683000" />
+      <workItem from="1586009952657" duration="197000" />
+      <workItem from="1586149728529" duration="1792000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="275" y="22" key="#Notifications" timestamp="1586010037958">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="22" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1586010037958" />
+    <state x="275" y="22" key="#Project_Structure" timestamp="1586010055957">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="22" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1586010055957" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1586155416418">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1586155416418" />
+    <state x="363" y="188" key="com.intellij.ide.util.TipDialog" timestamp="1586151723662">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="363" y="188" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1586151723662" />
+  </component>
+</project>
