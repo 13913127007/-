@@ -28,7 +28,7 @@
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <kisso.version>3.7.5</kisso.version>
         <freemarker.version>2.3.28</freemarker.version>
-        <fastjson.version>1.2.58</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <alipay-sdk-java.version>3.6.0.ALL</alipay-sdk-java.version>
         <slf4j.version>1.7.26</slf4j.version>
         <disruptor.version>3.4.2</disruptor.version>
